@@ -26,18 +26,18 @@ int main(void) {
     }   
  
     cout << "I2C comm setup" << endl;
-                                          
-                                               
+
+    uint8_t outData8 = 42;                                          
+    for(;;){                                           
     //Send msg to 8
-    uint8_t outData8 = 42;
-    wiringPiI2CWrite(fd8, outData8); 
-    cout << "Sending msg to 8: " << (int)outData8 << endl;
-        
-                
+    	cin>>outData8;
+    	wiringPiI2CWrite(fd8, outData8); 
+    	cout << "Sending msg to 8: " << outData8 << endl;
+    }
     //Receive msg from 8
-    int inData8 = wiringPiI2CRead(fd8);
+    uint8_t inData8 = wiringPiI2CRead(fd8);
     cout << "Received msg from 8: " << inData8 << endl;
-              
+ 
 
 
     //Send msg to 9
