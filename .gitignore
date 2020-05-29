@@ -3,5 +3,5 @@ cmake_install.cmake
 CMakeCache.txt
 Makefile
 
-eurobot_vision
+eurobot-vision
 example.png
