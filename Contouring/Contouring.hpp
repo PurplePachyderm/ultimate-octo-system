@@ -18,11 +18,13 @@ class eur::Contouring {
 		unsigned int demoFrameTime = 34;	//Used to change framerate of the demo (ms)
 
 		// Frame processing methods
+		int setCameraInput();	//Use first camera (ID = 0)
+		int setCameraInput(int cameraId);	//Use your custom ID
+
+		cv::Mat getFrame();
 		cv::Mat canny();
 		std::vector<std::vector<cv::Point>> getEdges();
 
-		int setCameraInput();	//Use first camera (ID = 0)
-		int setCameraInput(int cameraId);	//Use your custom ID
 
 		int launchCannyDemo();	//Use first camera (ID = 0)
 		int launchCannyDemo(int cameraId);	//Use your custom ID
