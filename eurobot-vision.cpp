@@ -5,6 +5,7 @@
 #include <opencv2/imgcodecs.hpp>
 #include <opencv2/imgproc.hpp>
 
+#include "Color/Color.hpp"
 #include "Contouring/Contouring.hpp"
 
 
@@ -13,12 +14,13 @@
 
 int main(int, char**) {
 
-	eur::Color color(0xFFA042, "Red");
+	eur::Color color(101, 125, 89, "Olive Green");
 	color.print();
+
 
 	// Contouring demo
 	eur::Contouring contouring;
-	contouring.launchCannyDemo();
+	contouring.launchDemo();
 
 
 	return 0;

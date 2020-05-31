@@ -8,6 +8,8 @@ include_directories( ${OpenCV_INCLUDE_DIRS} )
 add_executable( eurobot-vision
 	eurobot-vision.cpp
 	Color/Color.cpp
+	Camera/Camera.cpp
 	Contouring/Contouring.cpp
+	ColorTracking/ColorTracking.cpp
 )
 target_link_libraries( eurobot-vision ${OpenCV_LIBS} )

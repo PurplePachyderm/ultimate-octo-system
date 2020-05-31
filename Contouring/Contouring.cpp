@@ -1,38 +1,6 @@
 #include "Contouring.hpp"
 
 
-int eur::Contouring::setCameraInput() {
-	camera.open(0, cv::CAP_ANY);
-	if (!camera.isOpened()) {
-		std::cerr << "ERROR: Could not open camera" << std::endl;
-		return 1;
-	}
-
-	return 0;
-}
-
-
-
-int eur::Contouring::setCameraInput(int cameraId) {
-	camera.open(cameraId, cv::CAP_ANY);
-	if (!camera.isOpened()) {
-		std::cerr << "ERROR: Could not open camera" << std::endl;
-		return 1;
-	}
-
-	return 0;
-}
-
-
-
-cv::Mat eur::Contouring::getFrame() {
-	camera >> inFrame;
-
-	return inFrame;
-}
-
-
-
 cv::Mat eur::Contouring::canny() {
 	// Simply detects all contours in an image
 	// WARNING Assumes inFrame is already set up
@@ -65,29 +33,7 @@ std::vector<std::vector<cv::Point>> eur::Contouring::getEdges() {
 
 
 
-int eur::Contouring::launchCannyDemo() {
-	int cameraError = setCameraInput();
-	if(cameraError) {
-		return cameraError;
-	}
-
-	return cannyDemo();
-}
-
-
-
-int eur::Contouring::launchCannyDemo(int cameraId) {
-	int cameraError = setCameraInput(cameraId);
-	if(cameraError) {
-		return cameraError;
-	}
-
-	return cannyDemo();
-}
-
-
-
-int eur::Contouring::cannyDemo() {
+int eur::Contouring::demo() {
 
 	// Create display windows
 	cv::namedWindow("Webcam input", cv::WINDOW_AUTOSIZE);
