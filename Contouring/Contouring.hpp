@@ -1,9 +1,8 @@
 #include <iostream>
 
 #include <opencv2/opencv.hpp>
-#include <opencv2/highgui/highgui.hpp>
-#include <opencv2/imgcodecs.hpp>
-#include <opencv2/imgproc.hpp>
+
+#include "../Color/Color.hpp"
 
 
 	// We define our custom namespace & classes to abstract OpenCV function calls
@@ -19,8 +18,8 @@ class eur::Contouring {
 		unsigned int demoFrameTime = 34;	//Used to change framerate of the demo (ms)
 
 		// Frame processing methods
-		cv::Mat canny(cv::Mat);
-		// TODO Canny by color ?
+		cv::Mat canny();
+		std::vector<std::vector<cv::Point>> getEdges();
 
 		int setCameraInput();	//Use first camera (ID = 0)
 		int setCameraInput(int cameraId);	//Use your custom ID

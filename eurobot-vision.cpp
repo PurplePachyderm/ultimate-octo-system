@@ -13,6 +13,9 @@
 
 int main(int, char**) {
 
+	eur::Color color(0xFFA042, "Red");
+	color.print();
+
 	// Contouring demo
 	eur::Contouring contouring;
 	contouring.launchCannyDemo();
