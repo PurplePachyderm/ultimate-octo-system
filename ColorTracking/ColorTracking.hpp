@@ -10,25 +10,39 @@
 	// This class provides an interface to detect/track objects of one or several specific
 	// colors, as well as a demo function
 
+
 namespace eur {
 	class ColorTracking;
+
 }
+
 
 
 class eur::ColorTracking: public eur::Camera {
 	public:
 		std::vector<eur::Color> colors;	// Colors to be detected
-		unsigned int hTolerance, sTolerance, vTolerance;	// Hue/saturation/value tolerance
+		int hTolerance = 5; // Hue tolerance
+		void updateSTolerance();
+		void updateVTolerance();
+
+		int intSTolerance = 50;
+		int intVTolerance = 50;
 
 		// Frame processing methods
-		cv::Mat canny();
-		std::vector<std::vector<cv::Point>> getEdges();
+		cv::Mat hsvConversion();
+		cv::Mat colorFilter();
+		std::vector<std::vector<cv::Point>> getObjects();
+
 
 
 	private:
 
 		// hsvFrame: frame converted to HSV, colorOut: output frame
-		cv::Mat hsvFrame, colorOut;
+		cv::Mat hsvFrame, filteredFrame, colorOut;
 
 		int demo();	// virtual
+
+		float sTolerance = 0.05;	// Saturation tolerance
+		float vTolerance = 0.05;	// Value tolerance
+
 };

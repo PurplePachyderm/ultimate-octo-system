@@ -59,7 +59,14 @@ int eur::Color::getHue() {
 	int hue;
 
 	if(cMax == normR && delta != 0) {
-		hue = 60 * ( fmod((normG - normB) / delta, 6.0) );
+
+		// This is needed to avoid negative value when G < B
+		float temp = (normG - normB) / delta;
+		if(temp < 0) {
+			temp += 6.0;
+		}
+
+		hue = 60 * ( fmod(temp, 6.0) );
 	}
 
 	if(cMax == normG && delta != 0) {
