@@ -37,8 +37,8 @@ int main(int, char**) {
 
 	eur::ColorTracking colorTracking;
 	colorTracking.colorMasks = colorMasks;
-	// colorTracking.launchMaskDemo();
-	colorTracking.launchDemo();
+	colorTracking.launchMaskDemo();
+	// colorTracking.launchDemo();
 
 	return 0;
 }

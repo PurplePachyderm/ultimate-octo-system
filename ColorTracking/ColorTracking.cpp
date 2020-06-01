@@ -4,22 +4,6 @@
 #include "ColorTracking.hpp"
 
 
-// Those external callback functions are necessaty since the trackbar callback
-// must be prototyped as void foo(int, void *): methods have a hidden this
-// pointer, and can not be used as such.
-
-void saturationCallback(int, void * params) {
-	eur::ColorTracking * colorTracking = (eur::ColorTracking*) params;
-	colorTracking->updateSTolerance();
-}
-
-void valueCallback(int, void * params) {
-	eur::ColorTracking * colorTracking = (eur::ColorTracking*) params;
-	colorTracking->updateVTolerance();
-}
-
-
-
 cv::Mat eur::ColorTracking::hsvConversion() {
 
 	cv::cvtColor(inFrame, hsvFrame, cv::COLOR_RGB2HSV);
@@ -136,29 +120,13 @@ cv::Mat eur::ColorTracking::drawOutput() {
 
 	colorOut = inFrame;
 
-	// std::cout << "objects size = " << objects.size() << std::endl;
-
 	for(unsigned int i=0; i<objects.size(); i++) {
 		for(unsigned int j=0; j<objects[i].size(); j++) {
-			// std::cout << "	object " << i << " size = " << objects[i].size() << std::endl;
-			// std::cout << "		Drawing at " << objects[i][j].x << "," << objects[i][j].y << std::endl;
 			cv::putText(colorOut, colorMasks[i].name, objects[i][j], 2,1, cv::Scalar(0,255,0), 2);
 		}
 	}
 
 	return colorOut;
-}
-
-
-
-void eur::ColorTracking::updateSTolerance() {
-	sTolerance = intSTolerance / 1000.0;
-}
-
-
-
-void eur::ColorTracking::updateVTolerance() {
-	vTolerance = intVTolerance / 1000.0;
 }
 
 

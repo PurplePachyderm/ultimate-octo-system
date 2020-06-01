@@ -21,15 +21,12 @@ class eur::ColorTracking: public eur::Camera {
 	public:
 
 		std::vector<eur::ColorMask> colorMasks;	// Colors to be detected
-		int hTolerance = 5; // Hue tolerance
-		void updateSTolerance();
-		void updateVTolerance();
-
-		int intSTolerance = 50;
-		int intVTolerance = 50;
-
 		double maxNoiseArea = 5000.0;	// Defines the maximum size a noise can have, before beinf considered an object
 
+		// Used for mask demo
+		int minHueRange, maxHueRange;
+		int minSaturationRange, maxSaturationRange;
+		int minValueRange, maxValueRange;
 
 		// Frame processing methods
 		cv::Mat hsvConversion();
@@ -38,25 +35,18 @@ class eur::ColorTracking: public eur::Camera {
 		std::vector<std::vector<cv::Point>> getObjects();
 		cv::Mat drawOutput(); // Draws points on camera output for demo
 
-		int minHueRange, maxHueRange;
-		int minSaturationRange, maxSaturationRange;
-		int minValueRange, maxValueRange;
-
 		int launchMaskDemo();
 		int launchMaskDemo(int cameraId);
 
 
 	private:
 
-		// hsvFrame: frame converted to HSV, colorOut: output frame (text for demo)
+		// hsvFrame: frame converted to HSV, filteredFrame: applied mask, colorOut: output frame (text for demo)
 		cv::Mat hsvFrame, filteredFrame, colorOut;
-		std::vector<cv::Mat> filteredFrames;
-		std::vector<std::vector<cv::Point>> objects;
+		std::vector<cv::Mat> filteredFrames;	// One fram per mask
+		std::vector<std::vector<cv::Point>> objects;	// One vector of poins / mask
 
 		int maskDemo();
 		int demo();	// virtual
-
-		float sTolerance = 0.05;	// Saturation tolerance
-		float vTolerance = 0.05;	// Value tolerance
 
 };
