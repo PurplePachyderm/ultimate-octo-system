@@ -3,7 +3,7 @@
 #include <opencv2/opencv.hpp>
 
 #include "../Camera/Camera.hpp"
-#include "../Color/Color.hpp"
+#include "../ColorMask/ColorMask.hpp"
 
 
 	// We define our custom namespace & classes to abstract OpenCV function calls
@@ -13,14 +13,14 @@
 
 namespace eur {
 	class ColorTracking;
-
 }
 
 
 
 class eur::ColorTracking: public eur::Camera {
 	public:
-		std::vector<eur::Color> colors;	// Colors to be detected
+
+		std::vector<eur::ColorMask> colorMasks;	// Colors to be detected
 		int hTolerance = 5; // Hue tolerance
 		void updateSTolerance();
 		void updateVTolerance();
@@ -28,18 +28,32 @@ class eur::ColorTracking: public eur::Camera {
 		int intSTolerance = 50;
 		int intVTolerance = 50;
 
+		double maxNoiseArea = 5000.0;	// Defines the maximum size a noise can have, before beinf considered an object
+
+
 		// Frame processing methods
 		cv::Mat hsvConversion();
-		cv::Mat colorFilter();
+		cv::Mat slideFilter();
+		std::vector<cv::Mat> masksFilter();
 		std::vector<std::vector<cv::Point>> getObjects();
+		cv::Mat drawOutput(); // Draws points on camera output for demo
 
+		int minHueRange, maxHueRange;
+		int minSaturationRange, maxSaturationRange;
+		int minValueRange, maxValueRange;
+
+		int launchMaskDemo();
+		int launchMaskDemo(int cameraId);
 
 
 	private:
 
-		// hsvFrame: frame converted to HSV, colorOut: output frame
+		// hsvFrame: frame converted to HSV, colorOut: output frame (text for demo)
 		cv::Mat hsvFrame, filteredFrame, colorOut;
+		std::vector<cv::Mat> filteredFrames;
+		std::vector<std::vector<cv::Point>> objects;
 
+		int maskDemo();
 		int demo();	// virtual
 
 		float sTolerance = 0.05;	// Saturation tolerance
