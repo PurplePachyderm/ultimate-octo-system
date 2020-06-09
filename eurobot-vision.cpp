@@ -16,29 +16,33 @@
 int main(int, char**) {
 
 
+	  std::cout << "OpenCV version : " << CV_VERSION << std::endl;
+
 	// Contouring demo
 
-	// eur::Contouring contouring;
-	// contouring.launchDemo();
+	eur::Contouring contouring;
+	contouring.setImageInput("example.png");
+	//contouring.launchDemo();
 
 
 
 	// Color tracking demo
 
 	std::vector<eur::ColorMask> colorMasks {
-		eur::ColorMask(115, 145, 120, 255, 30, 115, "Red"),
-		eur::ColorMask(30, 45, 210, 255, 15, 80, "Green"),
-		eur::ColorMask(0, 20, 175, 255, 50, 170, "Blue"),
-		eur::ColorMask(80, 100, 85, 255, 55, 125, "Yellow"),
-		eur::ColorMask(100, 122, 130, 255, 85, 160, "Orange"),
-		eur::ColorMask(0, 25, 60, 130, 85, 255, "White")
+		eur::ColorMask(120, 130, 155, 220, 40, 170, "Red"),
+		eur::ColorMask(20, 50, 120, 230, 30, 80, "Green"),
+		eur::ColorMask(0, 15, 120, 210, 40, 90, "Blue"),
+		eur::ColorMask(85, 105, 155, 215, 40, 170, "Yellow"),
+		eur::ColorMask(100, 120, 145, 215, 40, 170, "Orange")
+		//eur::ColorMask(0, 25, 60, 130, 40, 170, "White")
 	};
 
 
 	eur::ColorTracking colorTracking;
+	colorTracking.setImageInput("example.png");
 	colorTracking.colorMasks = colorMasks;
-	colorTracking.launchMaskDemo();
-	// colorTracking.launchDemo();
+	//colorTracking.launchMaskDemo();
+	colorTracking.launchDemo(0);
 
 	return 0;
 }

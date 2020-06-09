@@ -41,6 +41,7 @@ cv::Mat eur::ColorTracking::slideFilter() {
 }
 
 
+
 std::vector<cv::Mat> eur::ColorTracking::masksFilter() {
 	// Uses the colorMasks attribute to return one filtered frame per color mask
 
@@ -69,12 +70,12 @@ std::vector<cv::Mat> eur::ColorTracking::masksFilter() {
 		);
 
 		// Noise erosion
-		cv::erode(filteredFrames[i], filteredFrames[i], cv::getStructuringElement(cv::MORPH_RECT, cv::Size(3, 3)));
-		cv::erode(filteredFrames[i], filteredFrames[i], cv::getStructuringElement(cv::MORPH_RECT, cv::Size(3, 3)));
+		cv::erode(filteredFrames[i], filteredFrames[i], cv::getStructuringElement(cv::MORPH_RECT, cv::Size(5, 5)));
+		cv::erode(filteredFrames[i], filteredFrames[i], cv::getStructuringElement(cv::MORPH_RECT, cv::Size(5, 5)));
 
 		// Remaining objects dilatation
-		cv::dilate(filteredFrames[i], filteredFrames[i], cv::getStructuringElement(cv::MORPH_RECT, cv::Size(5, 5)));
-		cv::dilate(filteredFrames[i], filteredFrames[i], cv::getStructuringElement(cv::MORPH_RECT, cv::Size(5, 5)));
+		cv::dilate(filteredFrames[i], filteredFrames[i], cv::getStructuringElement(cv::MORPH_RECT, cv::Size(8, 8)));
+		cv::dilate(filteredFrames[i], filteredFrames[i], cv::getStructuringElement(cv::MORPH_RECT, cv::Size(8, 8)));
 
 	}
 
@@ -135,7 +136,11 @@ cv::Mat eur::ColorTracking::drawOutput() {
 // for a real world color
 
 int eur::ColorTracking::launchMaskDemo() {
-	int cameraError = setCameraInput();
+	int cameraError = 0;
+	if(input != IMAGE) {
+		cameraError = setCameraInput();
+	}
+
 	if(cameraError) {
 		return cameraError;
 	}
@@ -222,7 +227,7 @@ int eur::ColorTracking::demo() {
 		drawOutput();
 
 
-		cv::imshow("Color tracking output", colorOut);
+		cv::imshow("Webcam input", colorOut);
 
 		// Applying byte mask to eliminate useless 1
 		int key = cv::waitKey(demoFrameTime) & 0xFF;

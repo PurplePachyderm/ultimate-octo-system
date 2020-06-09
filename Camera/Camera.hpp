@@ -1,5 +1,8 @@
 #pragma once
 
+#define CAMERA 1
+#define IMAGE 2
+
 #include <opencv2/opencv.hpp>
 
 
@@ -21,6 +24,8 @@ class eur::Camera {
 		int setCameraInput();	// Use first camera (ID = 0)
 		int setCameraInput(int cameraId);	// Use your custom ID
 
+		int setImageInput(std::string path);
+
 		// Frame processing methods
 		cv::Mat getFrame();
 
@@ -33,6 +38,9 @@ class eur::Camera {
 		cv::VideoCapture camera;
 
 		cv::Mat inFrame;	// Camera input
+		cv::Mat image;
+
+		int input = 0;
 
 		virtual int demo();
 };
