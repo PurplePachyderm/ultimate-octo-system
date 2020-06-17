@@ -119,7 +119,7 @@ std::vector<std::vector<cv::Point>> eur::ColorTracking::getObjects() {
 
 cv::Mat eur::ColorTracking::drawOutput() {
 
-	colorOut = inFrame;
+	colorOut = inFrame.clone();
 
 	for(unsigned int i=0; i<objects.size(); i++) {
 		for(unsigned int j=0; j<objects[i].size(); j++) {

@@ -8,6 +8,7 @@
 #include "ColorMask/ColorMask.hpp"
 #include "Contouring/Contouring.hpp"
 #include "ColorTracking/ColorTracking.hpp"
+#include "Perspective/Perspective.hpp"
 
 
 /*****************************************************************************/
@@ -20,29 +21,42 @@ int main(int, char**) {
 
 	// Contouring demo
 
-	eur::Contouring contouring;
-	contouring.setImageInput("example.png");
-	//contouring.launchDemo();
+	// eur::Contouring contouring;
+	// contouring.setImageInput("../img/example.png");
+	// contouring.launchDemo();
 
 
 
 	// Color tracking demo
 
-	std::vector<eur::ColorMask> colorMasks {
-		eur::ColorMask(120, 130, 155, 220, 40, 170, "Red"),
-		eur::ColorMask(20, 50, 120, 230, 30, 80, "Green"),
-		eur::ColorMask(0, 15, 120, 210, 40, 90, "Blue"),
-		eur::ColorMask(85, 105, 155, 215, 40, 170, "Yellow"),
-		eur::ColorMask(100, 120, 145, 215, 40, 170, "Orange")
-		//eur::ColorMask(0, 25, 60, 130, 40, 170, "White")
-	};
+	// std::vector<eur::ColorMask> colorMasks {
+	// 	eur::ColorMask(120, 130, 155, 220, 40, 170, "Red"),
+	// 	eur::ColorMask(20, 50, 120, 230, 30, 80, "Green"),
+	// 	eur::ColorMask(0, 15, 120, 210, 40, 90, "Blue"),
+	// 	eur::ColorMask(85, 105, 155, 215, 40, 170, "Yellow"),
+	// 	eur::ColorMask(100, 120, 145, 215, 40, 170, "Orange")
+	// 	//eur::ColorMask(0, 25, 60, 130, 40, 170, "White")
+	// };
+	//
+	//
+	// eur::ColorTracking colorTracking;
+	// colorTracking.setImageInput("../img/example.png");
+	// colorTracking.colorMasks = colorMasks;
+	// colorTracking.launchMaskDemo();
+	// colorTracking.launchDemo(0);
 
 
-	eur::ColorTracking colorTracking;
-	colorTracking.setImageInput("example.png");
-	colorTracking.colorMasks = colorMasks;
-	//colorTracking.launchMaskDemo();
-	colorTracking.launchDemo(0);
+
+	// Perspective demo
+
+	eur::Perspective perspective;
+	perspective.width = 330;
+	perspective.height = 714;
+
+	perspective.setImageInput("../img/example2.jpg");
+	perspective.launchDemo();
+
+
 
 	return 0;
 }
