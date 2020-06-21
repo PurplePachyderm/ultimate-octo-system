@@ -67,7 +67,7 @@ void thresh_callback(int, void* )
     vector<float>radius( contours.size() );
     for( size_t i = 0; i < contours.size(); i++ )
     {
-        approxPolyDP( contours[i], contours_poly[i], 3, true );
+        approxPolyDP( contours[i], contours_poly[i], 7, true );
         boundRect[i] = boundingRect( contours_poly[i] );
         minEnclosingCircle( contours_poly[i], centers[i], radius[i] );
     }
