@@ -30,7 +30,7 @@ class eur::ColorTracking: public eur::Camera {
 
 		// Frame processing methods
 		cv::Mat hsvConversion();
-		cv::Mat slideFilter();
+		cv::Mat slideFilter();	// Demo only
 		std::vector<cv::Mat> masksFilter();
 		std::vector<std::vector<cv::Point>> getObjects();
 		cv::Mat drawOutput(); // Draws points on camera output for demo
@@ -44,7 +44,7 @@ class eur::ColorTracking: public eur::Camera {
 		// hsvFrame: frame converted to HSV, filteredFrame: applied mask, colorOut: output frame (text for demo)
 		cv::Mat hsvFrame, filteredFrame, colorOut;
 		std::vector<cv::Mat> filteredFrames;	// One fram per mask
-		std::vector<std::vector<cv::Point>> objects;	// One vector of poins / mask
+		std::vector<std::vector<cv::Point>> objects;	// One vector of points / mask
 
 		int maskDemo();
 		int demo();	// virtual

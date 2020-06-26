@@ -20,10 +20,11 @@ class eur::Perspective: public eur::Camera {
 		void calibrate();
 		cv::Mat getTransformMartrix();
 
-		cv::Mat flatten();
+		cv::Mat flatten();	// Applies transform to all frame
 		int width, height;
 
-		std::vector<cv::Point2f> convertPoints();
+		std::vector<cv::Point2f> imagePoints;
+		std::vector<cv::Point2f> convertPoints();	// Applies transform to points
 
 	private:
 
@@ -37,9 +38,8 @@ class eur::Perspective: public eur::Camera {
 		std::vector<cv::Point2f> calibrationPoints;
 		cv::Mat transformMatrix;
 
-		std::vector<cv::Point2f> imagePoints, convertedPoints;
+		std::vector<cv::Point2f> convertedPoints;
 
 		int demo();	// virtual
-
 
 };

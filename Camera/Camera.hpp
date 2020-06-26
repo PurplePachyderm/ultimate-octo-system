@@ -23,8 +23,7 @@ class eur::Camera {
 
 		int setCameraInput();	// Use first camera (ID = 0)
 		int setCameraInput(int cameraId);	// Use your custom ID
-
-		int setImageInput(std::string path);
+		int setImageInput(std::string path);	// Use an image path
 
 		// Frame processing methods
 		cv::Mat getFrame();
@@ -32,6 +31,7 @@ class eur::Camera {
 
 		int launchDemo();	// Use first camera (ID = 0)
 		int launchDemo(int cameraId);	// Use your custom ID
+		int launchDemo(std::string path);	// Use an image path
 
 
 	protected:

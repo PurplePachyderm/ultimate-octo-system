@@ -12,6 +12,7 @@ add_executable( eurobot-vision
 	Camera/Camera.cpp
 	Contouring/Contouring.cpp
 	ColorTracking/ColorTracking.cpp
+	ShapeDetection/ShapeDetection.cpp
 	Perspective/Perspective.cpp
 )
 target_link_libraries( eurobot-vision ${OpenCV_LIBS} )

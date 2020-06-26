@@ -76,6 +76,17 @@ int eur::Camera::launchDemo(int cameraId) {
 
 
 
+int eur::Camera::launchDemo(std::string path) {
+	int cameraError = setImageInput(path);
+	if(cameraError) {
+		return cameraError;
+	}
+
+	return demo();
+}
+
+
+
 int eur::Camera::demo() {
 	return 0;
 }
