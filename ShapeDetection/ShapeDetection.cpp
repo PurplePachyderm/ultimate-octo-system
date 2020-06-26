@@ -52,15 +52,9 @@ std::vector<std::vector<cv::Point>> eur::ShapeDetection::getTriangles() {
 	std::vector<cv::Point> approx;
 	polys.clear();
 
-	std::cout << "New iteration: " << std::endl;
-
 	for (int i = 0; i < contours.size(); i++) {
 
 		cv::approxPolyDP( contours[i], approx, 7, true );
-
-		std::cout << "	Poly: " << std::endl;
-		std::cout << "		Poly sides: " << approx.size() << std::endl;
-		std::cout << "		Poly area: " << cv::contourArea(contours[i]) << std::endl;
 
 		// Skip small or non-convex objects
 		if (std::fabs(cv::contourArea(contours[i])) < 100 || !cv::isContourConvex(approx))
@@ -83,15 +77,10 @@ std::vector<std::vector<cv::Point>> eur::ShapeDetection::getTrapezes() {
 	std::vector<cv::Point> approx;
 	polys.clear();
 
-	std::cout << "New iteration: " << std::endl;
 
 	for (int i = 0; i < contours.size(); i++) {
 
 		cv::approxPolyDP( contours[i], approx, 7, true );
-
-		std::cout << "	Poly: " << std::endl;
-		std::cout << "		Poly sides: " << approx.size() << std::endl;
-		std::cout << "		Poly area: " << cv::contourArea(contours[i]) << std::endl;
 
 		// Skip small or non-convex objects
 		if (std::fabs(cv::contourArea(contours[i])) < 100 || !cv::isContourConvex(approx))
@@ -133,15 +122,10 @@ std::vector<std::vector<cv::Point>> eur::ShapeDetection::getRectangles() {
 	std::vector<cv::Point> approx;
 	polys.clear();
 
-	std::cout << "New iteration: " << std::endl;
 
 	for (int i = 0; i < contours.size(); i++) {
 
 		cv::approxPolyDP( contours[i], approx, 7, true );
-
-		std::cout << "	Poly: " << std::endl;
-		std::cout << "		Poly sides: " << approx.size() << std::endl;
-		std::cout << "		Poly area: " << cv::contourArea(contours[i]) << std::endl;
 
 		// Skip small or non-convex objects
 		if (std::fabs(cv::contourArea(contours[i])) < 100 || !cv::isContourConvex(approx))
@@ -167,9 +151,7 @@ std::vector<std::vector<cv::Point>> eur::ShapeDetection::getRectangles() {
 			if (approx.size() == 4 && mincos >= -0.1 && maxcos <= 0.3){
 				polys.push_back(approx);
 			}
-
 		}
-
 	}
 
 	return polys;
@@ -181,10 +163,8 @@ int eur::ShapeDetection::demo() {
 
 	// Create display windows
 	cv::namedWindow("Webcam input", cv::WINDOW_AUTOSIZE);
-	cv::namedWindow("Transformed frame output", cv::WINDOW_AUTOSIZE);
 
 	cv::createTrackbar("Canny threshold :", "Webcam input", &thresh, 255);
-
 
 	// Camera update loop
 	std::cout << "Press ESC to exit ..." << std::endl;
@@ -194,7 +174,7 @@ int eur::ShapeDetection::demo() {
 		getFrame();
 		grey();
 		canny();
-		getTrapezes();
+		getRectangles();
 
 
 		// Get bounding rects & radiuses
@@ -229,9 +209,7 @@ int eur::ShapeDetection::demo() {
 			circle( outFrame, centers[i], (int)radius[i], color, 2 );
 		}
 
-
 		cv::imshow("Webcam input", outFrame);
-		cv::imshow("Transformed frame output", cannyFrame);
 
 		// Applying byte mask to eliminate useless 1
 		int key = cv::waitKey(demoFrameTime) & 0xFF;

@@ -27,7 +27,7 @@ class eur::ShapeDetection: public eur::Camera {
 		int thresh = 42;
 
 	private:
-		int demo();	// virtual
+		int demo();	// virtual, gets rectangles
 
 		cv::Mat greyFrame, cannyFrame, outFrame;
 
