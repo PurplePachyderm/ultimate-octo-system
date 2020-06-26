@@ -48,8 +48,8 @@ int main(int, char**) {
 	// Contouring demo
 
 	eur::ShapeDetection shapeDetection;
-	//shapeDetection.setImageInput("../img/example3.png");
-	shapeDetection.launchDemo(0);
+	shapeDetection.setImageInput("../img/example3.png");
+	shapeDetection.launchDemo();
 
 
 	// Perspective demo

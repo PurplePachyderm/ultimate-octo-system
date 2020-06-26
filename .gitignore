@@ -5,3 +5,7 @@ Makefile
 make
 
 eurobot-vision
+
+
+ShapeDetectionTest
+TrapezeDetection
