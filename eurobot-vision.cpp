@@ -20,11 +20,22 @@ int main(int, char**) {
 
 	std::cout << "OpenCV version : " << CV_VERSION << std::endl;
 
+
+
+	// You can choose which demo to launch by commenting / uncommenting the
+	// correct code.
+
+	// You can also choose which source to use:
+	// - a camera (using a camera ID) -> .setCameraInput(int)
+	// - an image (using a path) -> .setImageInput(string)
+	// By default, camera 0 is used
+
+
+
 	// Contouring demo
 
-	// eur::Contouring contouring;
-	// contouring.setImageInput("../img/example.png");
-	// contouring.launchDemo();
+	eur::Contouring contouring;
+	contouring.launchDemo(0);
 
 
 
@@ -41,15 +52,18 @@ int main(int, char**) {
 	//
 	// eur::ColorTracking colorTracking;
 	// colorTracking.colorMasks = colorMasks;
-	// colorTracking.launchMaskDemo(0);
 	// colorTracking.launchDemo(0);
+
+	// Alternatively, use this demo to create you own masks
+	// colorTracking.launchMaskDemo(0);
+
 
 
 	// Contouring demo
 
-	eur::ShapeDetection shapeDetection;
-	shapeDetection.setImageInput("../img/example3.png");
-	shapeDetection.launchDemo();
+	// eur::ShapeDetection shapeDetection;
+	// shapeDetection.launchDemo("../img/example3.png");
+
 
 
 	// Perspective demo

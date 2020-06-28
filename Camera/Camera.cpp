@@ -30,7 +30,7 @@ int eur::Camera::setImageInput(std::string path) {
 	image = cv::imread(path);
 	input = IMAGE;
 
-	return 1;
+	return 0;
 }
 
 
@@ -57,6 +57,7 @@ int eur::Camera::launchDemo() {
 	}
 
 	if(cameraError) {
+		std::cout << "Camera error" << std::endl;
 		return cameraError;
 	}
 
@@ -68,6 +69,7 @@ int eur::Camera::launchDemo() {
 int eur::Camera::launchDemo(int cameraId) {
 	int cameraError = setCameraInput(cameraId);
 	if(cameraError) {
+		std::cout << "Camera error" << std::endl;
 		return cameraError;
 	}
 
@@ -78,7 +80,9 @@ int eur::Camera::launchDemo(int cameraId) {
 
 int eur::Camera::launchDemo(std::string path) {
 	int cameraError = setImageInput(path);
+
 	if(cameraError) {
+		std::cout << "Camera error" << std::endl;
 		return cameraError;
 	}
 
